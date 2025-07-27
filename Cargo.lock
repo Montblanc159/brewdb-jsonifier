@@ -384,6 +384,7 @@ dependencies = [
  "async-std",
  "libsql",
  "serde",
+ "serde_json",
 ]
 
 [[package]]

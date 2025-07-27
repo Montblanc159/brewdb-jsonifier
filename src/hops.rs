@@ -1,35 +1,41 @@
-use libsql::{Connection, de};
+pub const DB_QUERY: &str = "SELECT \
+    h.Id as id, \
+    h.BrewingUsage as brewing_usage, \
+    h.Name as name, \
+    h.Aroma as aroma, \
+    h.Pedigree as pedigree, \
+    h.AlphaMin as alpha_min, \
+    h.AlphaMax as alpha_max, \
+    h.BetaMin as beta_min, \
+    h.BetaMax as beta_max, \
+    h.CoHumuloneMin as cohumumulone_min, \
+    h.CoHumuloneMax as cohumumulone_max, \
+    h.Info as info, \
+    h.Styles as styles, \
+    h.TotalOilMin as total_oil_min, \
+    h.TotalOilMax as total_oil_max, \
+    h.Trade as trade \
+    FROM hop h";
+pub const FILE_PATH: &str = "hops.json";
 
-const DB_QUERY: &str = "SELECT * FROM hop";
-
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, Default, serde::Deserialize, serde::Serialize)]
 pub struct Hop {
-    pub Id: Option<i64>,
-    pub BrewingUsage: Option<i64>,
-    pub Name: Option<String>,
-    pub Aroma: Option<String>,
-    pub Pedigree: Option<String>,
-    pub AlphaMax: Option<f32>,
-    pub AlphaMin: Option<f32>,
-    pub BetaMax: Option<f32>,
-    pub BetaMin: Option<f32>,
-    pub CoHumuloneMax: Option<f32>,
-    pub CoHumuloneMin: Option<f32>,
-    pub Info: Option<String>,
-    pub Styles: Option<String>,
-    pub TotalOilMax: Option<f32>,
-    pub TotalOilMin: Option<f32>,
-    pub Trade: Option<String>,
+    pub id: Option<i64>,
+    pub brewing_usage: Option<i64>,
+    pub name: Option<String>,
+    pub aroma: Option<String>,
+    pub pedigree: Option<String>,
+    pub alpha_min: Option<f32>,
+    pub alpha_max: Option<f32>,
+    pub beta_min: Option<f32>,
+    pub beta_max: Option<f32>,
+    pub cohumulone_min: Option<f32>,
+    pub cohumulone_max: Option<f32>,
+    pub info: Option<String>,
+    pub styles: Option<String>,
+    pub total_oil_min: Option<f32>,
+    pub total_oil_max: Option<f32>,
+    pub trade: Option<String>,
 }
 
-pub async fn query(conn: Connection) -> Vec<Hop> {
-    let mut statement = conn.prepare(DB_QUERY).await.unwrap();
-    let mut rows = statement.query([1]).await.unwrap();
-    let mut hops = vec![];
-
-    while let Some(row) = rows.next().await.unwrap() {
-        hops.push(de::from_row::<Hop>(&row).unwrap());
-    }
-
-    hops
-}
+impl super::Ingredient<Hop> {}

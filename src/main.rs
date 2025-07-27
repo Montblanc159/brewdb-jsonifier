@@ -1,6 +1,6 @@
-use brewdb_jsonifier::print_result;
+use brewdb_jsonifier::*;
 
 #[async_std::main]
 async fn main() {
-    print_result().await;
+    convert_all_data().await;
 }
