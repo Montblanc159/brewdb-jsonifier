@@ -74,7 +74,7 @@ where
         match serde_json::to_string(object) {
             Ok(string) => string,
             Err(err) => {
-                panic!("Unable to load data : {}", err);
+                panic!("Unable to load data : {err}");
             }
         }
     }
@@ -83,7 +83,7 @@ where
         let mut file = File::create(&self.file_path).expect("Failed to create file");
         match file.write_all(data.as_bytes()) {
             Ok(_) => println!("Ingredients json file created"),
-            Err(err) => panic!("Ingredients file creation error {}", err),
+            Err(err) => panic!("Ingredients file creation error {err}"),
         }
     }
 }
