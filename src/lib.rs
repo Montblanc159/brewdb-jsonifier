@@ -11,7 +11,7 @@ use yeasts::Yeast;
 use libsql::{Builder, Connection, de};
 use serde::{Deserialize, Serialize};
 
-const DB_PATH: &str = "submodules/BrewDB/brewDB.sqlite";
+const DB_PATH: &str = "BrewDB/brewDB.sqlite";
 
 async fn connection() -> Connection {
     let db = Builder::new_local(DB_PATH).build().await.unwrap();
