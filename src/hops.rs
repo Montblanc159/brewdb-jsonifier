@@ -1,6 +1,6 @@
 pub const DB_QUERY: &str = "SELECT \
     h.Id as id, \
-    h.BrewingUsage as brewing_usage, \
+    bu.Name as brewing_usage, \
     h.Name as name, \
     h.Aroma as aroma, \
     h.Pedigree as pedigree, \
@@ -15,13 +15,14 @@ pub const DB_QUERY: &str = "SELECT \
     h.TotalOilMin as total_oil_min, \
     h.TotalOilMax as total_oil_max, \
     h.Trade as trade \
-    FROM hop h";
+    FROM hop h
+    JOIN lookupbrewingusage bu ON bu.id = h.BrewingUsage";
 pub const FILE_PATH: &str = "hops.json";
 
 #[derive(Debug, Default, serde::Deserialize, serde::Serialize)]
 pub struct Hop {
     pub id: Option<i64>,
-    pub brewing_usage: Option<i64>,
+    pub brewing_usage: Option<String>,
     pub name: Option<String>,
     pub aroma: Option<String>,
     pub pedigree: Option<String>,
