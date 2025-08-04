@@ -13,7 +13,8 @@ pub const DB_QUERY: &str = "SELECT \
     m.TotalNitrogen AS total_nitrogen, \
     m.TotalProtein AS total_protein \
     FROM malt m \
-    JOIN lookupmaltster ms ON ms.id = m.Maltster";
+    JOIN lookupmaltster ms ON ms.id = m.Maltster
+    ORDER BY m.Name ASC";
 
 pub const FILE_PATH: &str = "malts.json";
 

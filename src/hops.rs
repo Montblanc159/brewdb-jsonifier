@@ -16,7 +16,8 @@ pub const DB_QUERY: &str = "SELECT \
     h.TotalOilMax as total_oil_max, \
     h.Trade as trade \
     FROM hop h
-    JOIN lookupbrewingusage bu ON bu.id = h.BrewingUsage";
+    JOIN lookupbrewingusage bu ON bu.id = h.BrewingUsage
+    ORDER BY h.Name ASC";
 pub const FILE_PATH: &str = "hops.json";
 
 #[derive(Debug, Default, serde::Deserialize, serde::Serialize)]

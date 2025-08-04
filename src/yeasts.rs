@@ -16,7 +16,8 @@ pub const DB_QUERY: &str = "SELECT \
     JOIN lookuplab l ON l.Id = y.Lab \
     JOIN lookupyeastflocculation fl ON fl.Id = y.Flocculation \
     JOIN lookupyeaststrain s ON s.Id = y.Strain \
-    JOIN lookupyeastform f ON f.Id = y.Form";
+    JOIN lookupyeastform f ON f.Id = y.Form
+    ORDER BY y.Name ASC";
 
 pub const FILE_PATH: &str = "yeasts.json";
 
